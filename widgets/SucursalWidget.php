@@ -41,10 +41,6 @@ class SucursalWidget extends baseWidget {
         $this->renderPartial('loginform', ['model' => $model]);
     }
 
-    public function solicitud() {
-           "NOT IMPLEMENTED";
-    }
-
     /**
      * Cambiar contraseña para usuario ya logeado
      */
