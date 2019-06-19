@@ -1,12 +1,12 @@
 <?php
 
 /*
-  Plugin Name: Bolsa ACOREC
-  Plugin URI: http://www.datys.cu
-  Description: Plugin gestión de la Bolsa de ACOREC.
+  Plugin Name: Sputnik
+  Plugin URI: https://github.com/Isan26/sputnik
+  Description: Sputnik mini-framework MVC for wordpress
   Author: Isan Rodriguez Trimiño
   Version: 0.1
-  Author URI: mailto:isan.rodriguez@datys.cu
+  Author URI: mailto:isan1989@gmail.com
  */
 
 add_action('admin_enqueue_scripts', function () {
@@ -45,32 +45,23 @@ class sputnik {
     }
 
     static function install() {
-        if (get_option('acorec_convocatoria', NULL) === NULL) { //Si null es pq es la primera vez que se instala el plugin
-            add_option('acorec_convocatoria', true);
-            add_option('acorec_inscripcion_deshabilitada', 'No hay convocatoria activa por el momento.');
-            add_option('acorec_smtp_user', '');
-            add_option('acorec_smtp_pass', '');
-            add_option('acorec_smtp_server', '');
-            add_option('acorec_smtp_puerto', '25'); //Puerto SMTP standard
-            add_option('acorec_smtp_email', ''); //Email desde el que se envia
-            add_option('acorec_smtp_sender', ''); //Nombre de quien lo envia
-            add_option('acorec_mail_pag', ''); //URL interna para cambio de password
-            add_option('acorec_smtp_encryption', ''); //Cifrado para SMTP
+        if (get_option('convocatoria', NULL) === NULL) { //Si null es pq es la primera vez que se instala el plugin
+            add_option('convocatoria', true);
+            add_option('inscripcion_deshabilitada', 'No hay convocatoria activa por el momento.');
+            add_option('smtp_user', '');
+            add_option('smtp_pass', '');
+            add_option('smtp_server', '');
+            add_option('smtp_puerto', '25'); //Puerto SMTP standard
+            add_option('smtp_email', ''); //Email desde el que se envia
+            add_option('smtp_sender', ''); //Nombre de quien lo envia
+            add_option('mail_pag', ''); //URL interna para cambio de password
+            add_option('smtp_encryption', ''); //Cifrado para SMTP
         }
         //CREAR LAS TABLAS EN LA BD
         global $wpdb;
-        $table_buffer = <<<BUFFER
-CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}acorec_buffer` (
-  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL,
-  `body` TEXT NOT NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-BUFFER;
 
         $table_usuario = <<<USUARIO
-CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}acorec_usuario` (
+CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}usuario` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
@@ -82,19 +73,9 @@ CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}acorec_usuario` (
 ENGINE = InnoDB;
 USUARIO;
 
-        $table_nomenclador = <<<NOMENCLADOR
-CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}acorec_nomenclator` (
-  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL,
-  `body` TEXT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-NOMENCLADOR;
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-        dbDelta($table_buffer);
         dbDelta($table_usuario);
-        dbDelta($table_nomenclador);
     }
 
     static function unistall() {
@@ -139,7 +120,7 @@ NOMENCLADOR;
     }
 
     public function admin_menu() {
-        add_menu_page(__('Sputnik', 'Datys'), __('Bolsa ACOREC', 'Datys'), 'manage_options', 'sputnik', [$this, 'init'], 'dashicons-groups', null);
+        add_menu_page(__('Sputnik', 'sputnik'), __('Config Sputnik', 'sputnik'), 'manage_options', 'sputnik', [$this, 'init'], 'dashicons-groups', null);
     }
 
     private function sectionExists($controller) {
