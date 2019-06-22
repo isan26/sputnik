@@ -120,7 +120,7 @@ USUARIO;
     }
 
     public function admin_menu() {
-        add_menu_page(__('Sputnik', 'sputnik'), __('Config Sputnik', 'sputnik'), 'manage_options', 'sputnik', [$this, 'init'], 'dashicons-groups', null);
+        add_menu_page(__('Sputnik', 'sputnik'), __('Sputnik', 'sputnik'), 'manage_options', 'sputnik', [$this, 'init'], 'dashicons-admin-generic', null);
     }
 
     private function sectionExists($controller) {
