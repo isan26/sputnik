@@ -12,7 +12,7 @@ class sputnikWidget extends baseWidget {
 
   
     public function actionIndex(){
-        return __DIR__;
+        return $this->renderPartial('index');
     }
 
 }

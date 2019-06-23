@@ -37,7 +37,8 @@ class baseWidget extends \WP_Widget {
     }
 
     public function getViewDir($view) {
-         $fullPath = __DIR__ . DIRECTORY_SEPARATOR . 'views';
+        global $sputnik;
+         $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR .'..' .DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
         if (strpos($view, ".")) {
             $fullPath .= str_replace(".", DIRECTORY_SEPARATOR, $view) . ".php";
         } else {

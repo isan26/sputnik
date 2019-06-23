@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of baseController
  *
@@ -40,8 +41,7 @@ class baseController {
 
     public function getViewDir($view) {
         global $sputnik;
-        $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
-
+        $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR .'..' .DIRECTORY_SEPARATOR . 'backend' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
         if (strpos($view, ".")) {
             $fullPath .= str_replace(".", DIRECTORY_SEPARATOR, $view) . ".php";
         } else {
@@ -50,7 +50,7 @@ class baseController {
         if (file_exists($fullPath)) {
             return $fullPath;
         } else {
-            wp_die("La vista $view no existe");
+            wp_die("La vista $view no existe ( $fullPath)");
         }
     }
 
