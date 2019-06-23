@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of baseAsset
+ * Class to register CSS and JS files, also you can register inline JS
  *
  * @author Isan
  */
@@ -24,6 +24,14 @@ class Assets {
             echo '<script>';
             echo $js;
             echo '</script>';
+        });
+    }
+    
+        public static function registerInlineCSS($css) {
+        add_action('wp_print_footer_scripts', function() use ($css) {
+            echo '<style>';
+            echo $css;
+            echo '</style>';
         });
     }
 
