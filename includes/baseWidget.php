@@ -1,11 +1,34 @@
 <?php
-
 /**
  * Description of baseWidget
  *
  * @author Isan
  */
-class baseWidget extends WP_Widget {
+class baseWidget extends \WP_Widget {
+
+    public $defaultAction = "index";
+    public $name = false;
+    public $description = '';
+
+    public function __construct() {
+        $widgetOptions = [
+            'classname' => __CLASS__,
+            'description' => $this->description,
+        ];
+
+        parent::__construct(strtolower(__CLASS__), $this->name ?? __CLASS__, $widgetOptions);
+    }
+
+    public function widget($args, $instance) {
+        $action = isset($_GET['action']) ? $_GET['action'] : $this->defaultAction;
+        $action = 'action' . ucfirst($action);
+
+        if (method_exists($this, $action)) {
+            echo $this->$action();
+        } else {
+            throw new Exception("Not Found", 404);
+        }
+    }
 
     public function renderPartial($view, $args = []) {
         $args[] = $this;
@@ -14,8 +37,12 @@ class baseWidget extends WP_Widget {
     }
 
     public function getViewDir($view) {
-        global $sputnik;
-        $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . "$view.php";
+         $fullPath = __DIR__ . DIRECTORY_SEPARATOR . 'views';
+        if (strpos($view, ".")) {
+            $fullPath .= str_replace(".", DIRECTORY_SEPARATOR, $view) . ".php";
+        } else {
+            $fullPath .= str_replace('Widget', '', get_class($this)) . DIRECTORY_SEPARATOR . "$view.php";
+        }
         if (file_exists($fullPath)) {
             return $fullPath;
         } else {

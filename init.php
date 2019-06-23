@@ -42,8 +42,8 @@ add_action('rest_api_init', function() {
 });
 
 add_action('widgets_init', function() {
-    sputnik::includeDir('widgets');
-    $widgets = sputnik::getFiles('widgets');
+    sputnik::includeDir('widgets/widgets');
+    $widgets = sputnik::getFiles('widgets/widgets');
     foreach ($widgets as $widget) {
         if ($widget == 'index.html') {
             continue;

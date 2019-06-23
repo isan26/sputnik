@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Clase base para los controladores REST,
  * Se encarga de inicializar la configuración por defecto y de registrar las acciones automaticamente.

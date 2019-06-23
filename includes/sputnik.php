@@ -1,11 +1,10 @@
 <?php
-
 class sputnik {
 
     CONST TOINCLUDE = [
         'helpers', //Clases con helpers para HTML
         'models', //Modelos(ORM)
-        'controllers', //Controladoras
+        'backend/controllers', //Controladoras
         'rest', //Controladoras RESTFULL
     ];
 
