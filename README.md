@@ -1,3 +1,5 @@
+![](img/sputnik.svg)
+
 # sputnik
 Mini framework to add mvc to wordpress development, this will add MVC + some other helpers and tools and a folder structure to keep your code as clean as posible.
 This project uses a ideas and code from [Yii Framework](https://www.yiiframework.com/) , in fact what i needed was to speed up my development process and i choose to take the ideas i like in Yii.
