@@ -27,7 +27,7 @@ class sputnik {
     ];
 
     //Debug Mode?
-    public $debug = false;
+    public $debug = true;
     public $defaultSection = 'index';
 
     /**
@@ -124,14 +124,14 @@ USUARIO;
     }
 
     private function sectionExists($controller) {
-        return file_exists(__DIR__ . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $controller . ".php");
+        return file_exists(__DIR__ . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR ."$controller.php");
     }
 
     public function init() {
-        $section = $this->defaultSection;
+        $section = $this->defaultSection."Controller";
         if (isset($_GET['section'])) {
             $section = filter_input(INPUT_GET, 'section', FILTER_SANITIZE_SPECIAL_CHARS);
-
+            $section.="Controller";
             if (!$this->sectionExists($section)) {
                 wp_die("La página solicitada no existe", "Error");
             }

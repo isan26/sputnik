@@ -6,8 +6,8 @@
  * @author Isan
  */
 class baseController {
-    
-    public $defaultAction  = 'index';
+
+    public $defaultAction = 'index';
 
     /**
      * Renderiza una vista
@@ -41,7 +41,13 @@ class baseController {
 
     public function getViewDir($view) {
         global $sputnik;
-        $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . "$view.php";
+        $fullPath = $sputnik->basePath() . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+
+        if (strpos($view, ".")) {
+            $fullPath .= str_replace(".", DIRECTORY_SEPARATOR, $view) . ".php";
+        } else {
+            $fullPath .= str_replace('Controller', '', get_class($this)) . DIRECTORY_SEPARATOR . "$view.php";
+        }
         if (file_exists($fullPath)) {
             return $fullPath;
         } else {
@@ -74,8 +80,8 @@ class baseController {
     }
 
     public function __call($name, $arguments) {
-        $actionName = "action". ucfirst($name);
-        if (method_exists($this,$actionName)) {
+        $actionName = "action" . ucfirst($name);
+        if (method_exists($this, $actionName)) {
             return $this->$actionName();
         } else {
             wp_die("La página solicitada no existe.");
