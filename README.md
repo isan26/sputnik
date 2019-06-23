@@ -1,4 +1,4 @@
-![](img/sputnik.svg)
+![Sputnik](img/sputnik.svg)
 
 # sputnik
 Mini framework to add mvc to wordpress development, this will add MVC + some other helpers and tools and a folder structure to keep your code as clean as posible.
