@@ -1,5 +1,4 @@
 <h1>It Works</h1>
-<body> 
    <svg xmlns="http://www.w3.org/2000/svg">
        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 511.993 511.993" style="enable-background:new 0 0 511.993 511.993;" xml:space="preserve">
@@ -29,36 +28,4 @@
 	C325.04,213.832,325.041,201.797,317.618,194.374z"/>
 <path style="fill:#3A3839;" d="M317.618,194.374L317.618,194.374L58.37,453.621l7.141,7.141l234.421-234.421
 	c6.161,1.405,12.886-0.287,17.684-5.085C325.041,213.832,325.041,201.798,317.618,194.374z"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg>
-   </svg> 
-</body>

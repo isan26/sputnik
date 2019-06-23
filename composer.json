@@ -1,0 +1,21 @@
+{
+    "name": "Isan26/sputnik",
+    "description": "Mini framework for wordpress",
+        "keywords": ["wordpress", "framework", "mvc", "orm","restfull","widget"],
+        "license": "MIT",
+        "homepage": "https://github.com/Isan26/sputnik/",
+        "support": {
+        "issues": "https://github.com/Isan26/sputnik/issues",
+        "wiki": "https://github.com/Isan26/sputnik/wiki",
+        "source": "https://github.com/Isan26/sputnik"
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "authors": [
+        {
+            "name": "Isan",
+            "email": "isan1989@gmail.com"
+        }
+    ]
+}
